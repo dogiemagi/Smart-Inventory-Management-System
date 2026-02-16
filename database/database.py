@@ -77,11 +77,3 @@ def close_db_connection(connection):
     """Close SQLite database connection"""
     if connection:
         connection.close()
-
-
-def dict_from_row(row):
-    """Convert SQLite row to dictionary"""
-    if row is None:
-        return None
-    return dict(row)
-
