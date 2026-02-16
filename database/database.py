@@ -41,6 +41,10 @@ def init_db():
                 FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
             )
         """)
+        # Indexes for fast lookup
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_username ON users(username)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_email ON users(email)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_role ON users(role)")
 
         # Create default admin user (password: Admin@123)
         cursor.execute("""
@@ -80,3 +84,4 @@ def dict_from_row(row):
     if row is None:
         return None
     return dict(row)
+
